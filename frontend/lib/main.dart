@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const NucleusPassApp());
+  runApp(const NucleusApp());
 }
 
-class NucleusPassApp extends StatelessWidget {
-  const NucleusPassApp({super.key});
+class NucleusApp extends StatelessWidget {
+  const NucleusApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nucleus Pass',
+      title: 'Nucleus',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -27,10 +27,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nucleus Pass'),
+        title: const Text('Nucleus'),
       ),
       body: const Center(
-        child: Text('Welcome to Nucleus Pass!'),
+        child: Text('Welcome to Nucleus!'),
       ),
     );
   }
