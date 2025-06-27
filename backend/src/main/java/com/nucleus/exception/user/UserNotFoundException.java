@@ -1,4 +1,4 @@
-package com.nucleuspass.exception.user;
+package com.nucleus.exception.user;
 
 public class UserNotFoundException extends UserException {
     public UserNotFoundException(String message) {

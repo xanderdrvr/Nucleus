@@ -1,7 +1,7 @@
-package com.nucleuspass.exception;
+package com.nucleus.exception;
 
-import com.nucleuspass.exception.user.UserAlreadyExistsException;
-import com.nucleuspass.exception.user.UserNotFoundException;
+import com.nucleus.exception.user.UserAlreadyExistsException;
+import com.nucleus.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

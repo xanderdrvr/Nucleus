@@ -1,4 +1,4 @@
-package com.nucleuspass.exception.user;
+package com.nucleus.exception.user;
 
 public class UserException extends RuntimeException {
     public UserException(String message) {

@@ -1,9 +1,9 @@
 spring:
   application:
-    name: nucleus-pass
+    name: nucleus
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/nucleus_pass
+    url: jdbc:postgresql://localhost:5432/nucleus
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver

@@ -1,4 +1,4 @@
-package com.nucleuspass.security;
+package com.nucleus.security;
 
 public class JwtAuthenticationFilter {
 }

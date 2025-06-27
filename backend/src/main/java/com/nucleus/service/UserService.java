@@ -1,6 +1,6 @@
-package com.nucleuspass.service;
+package com.nucleus.service;
 
-import com.nucleuspass.repository.UserRepository;
+import com.nucleus.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

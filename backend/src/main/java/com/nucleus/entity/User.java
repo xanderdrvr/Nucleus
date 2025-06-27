@@ -1,4 +1,4 @@
-package com.nucleuspass.entity;
+package com.nucleus.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

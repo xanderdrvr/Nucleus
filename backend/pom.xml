@@ -8,10 +8,10 @@
 		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nucleuspass</groupId>
-	<artifactId>nucleuspass</artifactId>
+	<groupId>com.nucleus</groupId>
+	<artifactId>nucleus</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>nucleuspass</name>
+	<name>nucleus</name>
 	<description>Shared credential vaults</description>
 	<url/>
 	<licenses>

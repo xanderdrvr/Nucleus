@@ -1,4 +1,4 @@
-package com.nucleuspass.dto;
+package com.nucleus.dto;
 
 public class AuthRequest {
 }

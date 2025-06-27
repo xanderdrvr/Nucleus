@@ -1,4 +1,4 @@
-    package com.nucleuspass.security;
+    package com.nucleus.security;
 
     import io.jsonwebtoken.Jwts;
     import io.jsonwebtoken.io.Decoders;
@@ -27,7 +27,7 @@
             Date expirationDate = new Date(date.getTime() + jwtExpirationMs);
 
            return Jwts.builder()
-                   .issuer("NucleusPass")
+                   .issuer("Nucleus")
                    .expiration(expirationDate)
                    .issuedAt(date)
                    .subject(username)
