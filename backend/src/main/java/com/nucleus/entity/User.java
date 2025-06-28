@@ -2,10 +2,6 @@ package com.nucleus.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -14,10 +10,6 @@ import java.util.UUID;
 
 @Entity
 @Table (name = "users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class User {
 
     @Id
@@ -44,4 +36,65 @@ public class User {
     @CreationTimestamp
     private Instant createdAt;
 
+    protected User() {
+    }
+
+    public User(String email, String passwordHash, String displayName, String avatarUrl) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.displayName = displayName;
+        this.avatarUrl = avatarUrl;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", passwordHash='[PROTECTED]" + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }

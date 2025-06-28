@@ -10,14 +10,21 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: nucleus
     show-sql: true
 
-    flyway:
-      enabled: true
-      locations: classpath:db/migration
-      baseline-on-migrate: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    schemas: nucleus
 
-    jwt:
-      secret: ${JWT_SECRET}
-      expirationMs: ${JWT_EXPIRATION}
+jwt:
+  secret: ${JWT_SECRET}
+  expirationMs: ${JWT_EXPIRATION_MS}
+
+server:
+  port: 3001

@@ -22,7 +22,7 @@
             this.jwtExpirationMs = jwtExpirationMs;
         }
 
-        public String generateToken(String username) {
+        public String generateToken(String displayName) {
             Date date = new Date();
             Date expirationDate = new Date(date.getTime() + jwtExpirationMs);
 
@@ -30,7 +30,7 @@
                    .issuer("Nucleus")
                    .expiration(expirationDate)
                    .issuedAt(date)
-                   .subject(username)
+                   .subject(displayName)
                    .signWith(key)
                    .compact();
         }
@@ -47,6 +47,15 @@
             } catch (Exception e) {
                 return false;
             }
+        }
+
+        public String extractDisplayName(String token) {
+            return Jwts.parser()
+                    .verifyWith(key)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .getSubject();
         }
 
     }
