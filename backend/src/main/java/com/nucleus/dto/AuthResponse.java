@@ -1,4 +1,9 @@
 package com.nucleus.dto;
 
-public class AuthResponse {
-}
+public record AuthResponse (
+   String token,
+
+   String displayName,
+
+   String avatarUrl
+) {}
