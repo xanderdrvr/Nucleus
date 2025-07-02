@@ -3,6 +3,7 @@
     import io.jsonwebtoken.Jwts;
     import io.jsonwebtoken.io.Decoders;
     import io.jsonwebtoken.security.Keys;
+    import io.jsonwebtoken.security.MacAlgorithm;
     import org.springframework.beans.factory.annotation.Value;
     import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@
     public class JwtUtil {
         private final SecretKey key;
         private final long jwtExpirationMs;
+        private final MacAlgorithm algorithm = Jwts.SIG.HS256;
 
         public JwtUtil(
                 @Value("${jwt.secret}") String secret,
@@ -22,7 +24,7 @@
             this.jwtExpirationMs = jwtExpirationMs;
         }
 
-        public String generateToken(String displayName) {
+        public String generateToken(String email) {
             Date date = new Date();
             Date expirationDate = new Date(date.getTime() + jwtExpirationMs);
 
@@ -30,8 +32,8 @@
                    .issuer("Nucleus")
                    .expiration(expirationDate)
                    .issuedAt(date)
-                   .subject(displayName)
-                   .signWith(key)
+                   .subject(email)
+                   .signWith(key, algorithm)
                    .compact();
         }
 
@@ -49,7 +51,7 @@
             }
         }
 
-        public String extractDisplayName(String token) {
+        public String extractEmail(String token) {
             return Jwts.parser()
                     .verifyWith(key)
                     .build()

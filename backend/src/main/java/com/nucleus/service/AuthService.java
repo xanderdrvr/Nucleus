@@ -1,9 +1,14 @@
 package com.nucleus.service;
 
+import com.nucleus.dto.AuthRequest;
+import com.nucleus.dto.AuthResponse;
 import com.nucleus.dto.RegisterRequest;
 import com.nucleus.entity.User;
+import com.nucleus.exception.user.InvalidCredentialsException;
 import com.nucleus.exception.user.UserAlreadyExistsException;
+import com.nucleus.exception.user.UserNotFoundException;
 import com.nucleus.repository.UserRepository;
+import com.nucleus.security.JwtUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +20,12 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtService;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtUtil jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public void register(RegisterRequest request) {
@@ -34,6 +41,23 @@ public class AuthService {
         );
 
         userRepository.save(user);
+    }
+
+    public AuthResponse login(AuthRequest authRequest) {
+        User user = userRepository.findByEmail(authRequest.email())
+                .orElseThrow(() -> new UserNotFoundException("User not found with email: " + authRequest.email()));
+
+        if (!passwordEncoder.matches(authRequest.password(), user.getPasswordHash())) {
+            throw new InvalidCredentialsException("Invalid credentials");
+        }
+
+        String token = jwtService.generateToken(user.getEmail());
+
+        return new AuthResponse(
+                token,
+                user.getDisplayName(),
+                user.getAvatarUrl()
+        );
     }
 
     private String generateRandomAvatarUrl(String seed) {

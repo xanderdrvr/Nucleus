@@ -1,5 +1,7 @@
 package com.nucleus.controller;
 
+import com.nucleus.dto.AuthRequest;
+import com.nucleus.dto.AuthResponse;
 import com.nucleus.dto.RegisterRequest;
 import com.nucleus.service.AuthService;
 import jakarta.validation.Valid;
@@ -23,6 +25,12 @@ public class AuthController {
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
         authService.register(registerRequest);
         return ResponseEntity.ok("User registered successfully");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authRequest) {
+        AuthResponse authResponse = authService.login(authRequest);
+        return ResponseEntity.ok(authResponse);
     }
 
 }

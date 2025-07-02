@@ -1,5 +1,6 @@
 package com.nucleus.exception;
 
+import com.nucleus.exception.user.InvalidCredentialsException;
 import com.nucleus.exception.user.UserAlreadyExistsException;
 import com.nucleus.exception.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(
                 new ErrorResponse(ex.getMessage(), HttpStatus.CONFLICT.value(), Instant.now()),
                 HttpStatus.CONFLICT
+        );
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials(InvalidCredentialsException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED.value(), Instant.now()),
+                HttpStatus.UNAUTHORIZED
         );
     }
 

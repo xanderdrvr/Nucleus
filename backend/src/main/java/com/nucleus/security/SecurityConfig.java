@@ -22,9 +22,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/api/auth/register").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/swagger-ui/index.html").permitAll()
-                        .requestMatchers("/v3/api-docs").permitAll()
-                        .requestMatchers("/v3/api-docs/swagger-config").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
