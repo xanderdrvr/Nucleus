@@ -1,39 +1,28 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
 
 void main() {
-  runApp(const NucleusApp());
+  runApp(const MyApp());
 }
 
-class NucleusApp extends StatelessWidget {
-  const NucleusApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nucleus',
+      title: 'Nucleus App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 21, 23, 44),
+    ),
       home: const HomeScreen(),
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+      },
     );
   }
 }
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Nucleus'),
-      ),
-      body: const Center(
-        child: Text('Welcome to Nucleus!'),
-      ),
-    );
-  }
-}
-
-
